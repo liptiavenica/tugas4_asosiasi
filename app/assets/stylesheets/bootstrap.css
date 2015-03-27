@@ -5,6 +5,22 @@
  */
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+.footer-bottom
+{
+	background-color: #F06;
+	height:50px;
+	color:white;
+	font-weight: bold;
+	margin-top:50px;
+	padding-top:10px;
+}
+
+.konten
+{
+	margin-bottom:100px;
+}
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -12,7 +28,7 @@ html {
 }
 body {
   margin: 0;
-}
+}footer-bottom
 article,
 aside,
 details,
