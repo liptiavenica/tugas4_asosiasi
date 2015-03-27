@@ -1,0 +1,26 @@
+<%= form_for @article do |f| %>
+<%= f.label :title %>
+&nbsp&nbsp&nbsp&nbsp&nbsp
+<%= f.text_field :title, :autofocus=>true%>
+<br/>
+<br/>
+<br/>
+<%= f.label :content %>
+<%= f.text_area :content, cols: 40, rows: 10 %>
+<br/>
+<br/>
+<br/>
+<%= f.label :status %>
+&nbsp&nbsp&nbsp
+<%= f.radio_button :status, "active" %>
+<%= label :article_status, 'active' %>
+&nbsp&nbsp&nbsp
+<%= f.radio_button :status, "off" %>
+<%= label :article_status, 'off' %>
+<br/>
+<br/>
+<%= f.submit :submit %>
+<% end %>
+<div>
+<%= link_to "back to Home", articles_path %>
+</div>
