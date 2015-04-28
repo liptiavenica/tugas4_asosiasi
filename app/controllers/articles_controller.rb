@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-   @articles = Article.paginate :page => params[:page], :per_page => 5
+   @articles = Article.paginate :page => params[:page], :per_page => 10
   end
 
   def new
@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
   def show
    @article = Article.find_by_id(params[:id])
    @comments = @article.comments
+   @comment = Comment.new
   end
   
   def create

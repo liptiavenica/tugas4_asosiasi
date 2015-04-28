@@ -1,1 +1,9 @@
-
+<div class="well">
+  <h2><%= comment.id %></h2>
+  <p class="text-muted">Added by <strong><%= comment.user_id %></strong> on
+    <%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %></p>
+ 
+  <blockquote>
+    <p><%= comment.content %></p>
+  </blockquote>
+</div>

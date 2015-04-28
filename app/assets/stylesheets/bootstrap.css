@@ -5,6 +5,12 @@
  */
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+#komentar
+{
+	border: 0.5px solid gray;
+	padding: 10px 10px;
+	border-radius: 10px;
+}
 
 .footer-bottom
 {
