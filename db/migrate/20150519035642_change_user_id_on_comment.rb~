@@ -1,0 +1,4 @@
+class ChangeUserIdOnComment < ActiveRecord::Migration
+  def change
+  end
+end
