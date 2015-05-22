@@ -1,6 +1,11 @@
 class ArticlesController < ApplicationController
   def index
-   @articles = Article.paginate :page => params[:page], :per_page => 10
+   @articles = Article.paginate :page => params[:page], :per_page => 8
+   respond_to do |format|
+      format.xls  { send_data @articles.to_csv(col_sep: "\t")}
+      format.html
+      format.csv  { send_data @articles.to_csv}
+    end
   end
 
   def new
@@ -15,6 +20,7 @@ class ArticlesController < ApplicationController
    @article = Article.find_by_id(params[:id])
    @comments = @article.comments
    @comment = Comment.new
+    
   end
   
   def create
@@ -49,6 +55,16 @@ class ArticlesController < ApplicationController
     redirect_to action: 'index'
    end
   end
+  
+  def import
+   Article.import(params[:file])
+   redirect_to action: 'index', notice: "Articles imported!"
+  end
+
+ def search
+   @articles = Article.search(params[:search])
+end
+
 
   private
    def params_article

@@ -1,3 +1,15 @@
+<%= form_tag articles_path, :method => 'get' do %>
+	<p class= 'pull-right'>
+	<%= text_field_tag :search, params[:search], :id => 'search_field' %>
+	<%= submit_tag "SEARCH" , :name => nil, class: 'btn btn-success' %>
+	</p>
+<% end %>
+
+<p>
+  Download Articles:
+  <%= link_to "CSV", articles_path(format: "csv") %> |
+  <%= link_to "Excel", articles_path(format: "xls") %>
+</p>
 <% @articles.each do |article| %>
 <h3><%= article.title %></h3>
 <p>

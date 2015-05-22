@@ -9,4 +9,26 @@ default_scope {where(status: 'active')}
 has_many :comments
 validates_presence_of :content, :title, :status
 
+ def self.to_csv(options = {})
+ 	CSV.generate(options) do |csv|
+ 		csv << column_names
+ 		all.each do |article|
+ 			csv << article.attributes.values_at(*column_names)
+ 		end
+ 	end
+ end
+
+ def self.import(file)
+ 	CSV.foreach(file.path, headers: true) do |row|
+ 		Article.create! row.to_hash
+ 	end
+ end
+
+ def self.search(search)
+  if search
+    find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+  else
+    find(:all)
+  end
+end
 end
