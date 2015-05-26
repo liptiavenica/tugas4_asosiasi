@@ -1,9 +1,9 @@
 class ArticlesController < ApplicationController
   def index
    if params[:search]
-      @articles = Article.search(params[:search]).order("created_at DESC")
+       @articles = Article.search(params[:search]).paginate :page => params[:page], :per_page => 7
     else
-      @articles = Article.order("created_at DESC")
+      @articles = Article.paginate :page => params[:page], :per_page => 7
     end
     UserMailer.send_signup_email().deliver
    #@articles = Article.paginate :page => params[:page], :per_page => 8
