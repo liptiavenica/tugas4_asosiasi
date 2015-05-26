@@ -1,6 +1,12 @@
 class ArticlesController < ApplicationController
   def index
-   @articles = Article.paginate :page => params[:page], :per_page => 8
+   if params[:search]
+      @articles = Article.search(params[:search]).order("created_at DESC")
+    else
+      @articles = Article.order("created_at DESC")
+    end
+    UserMailer.send_signup_email().deliver
+   #@articles = Article.paginate :page => params[:page], :per_page => 8
    respond_to do |format|
       format.xls  { send_data @articles.to_csv(col_sep: "\t")}
       format.html
@@ -60,10 +66,6 @@ class ArticlesController < ApplicationController
    Article.import(params[:file])
    redirect_to action: 'index', notice: "Articles imported!"
   end
-
- def search
-   @articles = Article.search(params[:search])
-end
 
 
   private

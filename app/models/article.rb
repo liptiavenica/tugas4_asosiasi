@@ -24,11 +24,8 @@ validates_presence_of :content, :title, :status
  	end
  end
 
- def self.search(search)
-  if search
-    find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
-  else
-    find(:all)
-  end
+ def self.search(query)
+  # where(:title, query) -> This would return an exact match of the query
+    where("title like ?", "%#{query}%") 
 end
 end
